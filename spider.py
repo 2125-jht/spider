@@ -20,6 +20,7 @@ findBd = re.compile(r'<p class="">(.*?)</p>', re.S)
 def main():
     baseurl = "https://movie.douban.com/top250?start="
     datalist = getData(baseurl)
+    # 保存路径(当前目录下)
     savepath = "豆瓣电影Top250.xls"
     saveData(datalist, savepath)
 
@@ -28,7 +29,7 @@ def getData(baseurl):
     print("开始")
     datalist = []
     for i in range(0, 10):   # 每个网页有25部电影，需要循环10次
-        url = baseurl + str(i*25)
+        url = baseurl + str(i*25)   # 观察网址变化可得出
         html = askURL(url)
 
         # 解析数据
@@ -83,7 +84,7 @@ def getData(baseurl):
 
 # 获得一个URL的网页内容
 def askURL(url):
-    # 模拟浏览器头部信息，向服务器发送消息(该信息需要自己获得)
+    # 模拟浏览器头部信息，向服务器发送消息(该信息需要自己获得:浏览器按F12进入查看)
     print("爬取中...")
     head = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)\
 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36 Edg/98.0.1108.50"}
